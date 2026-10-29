@@ -1,11 +1,34 @@
-name: Package HTML as Android
+name: Build Maduro Gran Escape for Android
 
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Show message
-        run: echo "Preparing build"
+      - name: Download repository
+        uses: actions/checkout@v4
+
+      - name: Verify game HTML and package
+        run: |
+          test -f "Gran-escape.html"
+          mkdir -p android-app
+          cp "Gran-escape.html" android-app/index.html
+
+      - name: Prepare game package
+        run: |
+          cat << 'EOF' > android-app/README.txt
+          Game: Maduro: Gran Escape
+          Entry file: index.html
+          This folder contains the copied HTML game
+          EOF
+
+      - name: Upload prepared game
+        uses: actions/upload-artifact@v4
+        with:
+          name: maduro-gran-escape-html
+          path: android-app/
