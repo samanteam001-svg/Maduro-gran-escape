@@ -1,4 +1,4 @@
-name: Build Android App
+name: Package HTML as Android
 
 on:
   workflow_dispatch:
@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Show message
-        run: echo "Preparando la compilación"
+        run: echo "Preparing build"
