@@ -1,0 +1,11 @@
+name: Build Android App
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show message
+        run: echo "Preparando la compilación"
